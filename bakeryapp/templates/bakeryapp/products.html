@@ -1,0 +1,237 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#faf4ec;
+    
+}
+
+.products-section{
+    max-width:1400px;
+    margin:60px auto;
+    padding:20px;
+}
+
+.products-title{
+    text-align:center;
+    color:#e68134;
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:50px;
+}
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+}
+
+.product-card,
+.product-box{
+
+    text-decoration:none;
+
+    color:#000;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+}
+
+.product-card:hover,
+.product-box:hover
+{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 25px rgba(0,0,0,.18);
+
+}
+
+.product-image{
+
+    width:100%;
+
+    height:340px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.product-content{
+
+    background:#f6e7ae;
+
+    text-align:center;
+
+    padding:18px;
+
+}
+
+.product-content h3{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.product-content p{
+
+    margin-top:10px;
+
+    font-size:24px;
+
+    color:#333;
+
+}
+
+@media(max-width:992px){
+
+.product-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.product-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+
+<section class="products-section">
+
+<h2 class="products-title">OUR PRODUCTS</h2>
+
+<div class="product-grid">
+
+<a href="{% url 'cake' %}" class="product-card">
+<img src="{% static 'images/p1.webp' %}" class="product-image">
+<div class="product-content">
+<h3>CAKES</h3>
+<p>6 TYPES</p>
+</div>
+</a>
+
+<a href="{% url 'pastries' %}" class="product-card">
+<img src="{% static 'images/p2.jpg' %}" class="product-image">
+<div class="product-content">
+<h3>PASTRIES</h3>
+<p>6 TYPES</p>
+</div>
+</a>
+
+<a href="{% url 'sweets' %}" class="product-card">
+<img src="{% static 'images/p3.jpg' %}" class="product-image">
+<div class="product-content">
+<h3>SWEETS</h3>
+<p>6 TYPES</p>
+</div>
+</a>
+
+<div class="product-box">
+<img src="{% static 'images/p4.webp' %}" class="product-image">
+<div class="product-content">
+<h3>GIFT BOX</h3>
+<p>10 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p5.webp' %}" class="product-image">
+<div class="product-content">
+<h3>SAVORIES</h3>
+<p>34 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p6.jpg' %}" class="product-image">
+<div class="product-content">
+<h3>BREADS</h3>
+<p>14 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p7.jpg' %}" class="product-image">
+<div class="product-content">
+<h3>COOKIES & BISCUITS</h3>
+<p>19 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p8.jpg' %}" class="product-image">
+<div class="product-content">
+<h3>CREAM ROLL</h3>
+<p>4 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p9.webp' %}" class="product-image">
+<div class="product-content">
+<h3>MUFFINS & FRUIT CAKE</h3>
+<p>18 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p10.webp' %}" class="product-image">
+<div class="product-content">
+<h3>CHIPS</h3>
+<p>5 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p11.webp' %}" class="product-image">
+<div class="product-content">
+<h3>CHOCOLATES</h3>
+<p>10 TYPES</p>
+</div></div>
+
+
+<div class="product-box">
+<img src="{% static 'images/p12.webp' %}" class="product-image">
+<div class="product-content">
+<h3>RUSK</h3>
+<p>7 TYPES</p>
+</div></div>
+
+
+</div>
+
+</section>
+
+{% endblock %}

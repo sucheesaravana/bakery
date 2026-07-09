@@ -1,0 +1,480 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    }
+
+body{
+    background:#FFF9F2;
+}
+
+.about-section{
+    width:100%;
+    padding:40px 20px 70px;
+}
+
+.about-container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    color:#E58331;
+    font-size:40px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+/*----------------------*/
+/* ABOUT */
+/*----------------------*/
+
+.about-row{
+    display:grid;
+    grid-template-columns:1.3fr .9fr;
+    gap:50px;
+    align-items:center;
+    margin-bottom:70px;
+}
+
+.about-text h2{
+    font-size:38px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.about-text p{
+    text-align:center;
+    font-size:22px;
+    line-height:1;
+    margin-bottom:22px;
+}
+
+.about-img img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/*----------------------*/
+/* STORY */
+/*----------------------*/
+
+.story-row{
+    display:grid;
+    grid-template-columns:.9fr 1.2fr;
+    gap:50px;
+    align-items:center;
+    margin-bottom:70px;
+}
+
+.story-image img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.story-content h2{
+    color:#E58331;
+    font-size:38px;
+    margin-bottom:25px;
+}
+
+.story-content p{
+    font-size:24px;
+    line-height:1;
+}
+
+/*----------------------*/
+/* BELIEVE */
+/*----------------------*/
+
+.believe-title{
+    text-align:center;
+    color:#E58331;
+    font-size:38px;
+    margin-bottom:35px;
+    font-weight:700;
+}
+
+.believe-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:30px 18px;
+    text-align:center;
+    border:1px solid #ddd;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.icon{
+    width:65px;
+    height:65px;
+    background:#DDA06A;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    margin:auto;
+    margin-bottom:18px;
+}
+
+.card h3{
+    color:#D98B4D;
+    margin-bottom:15px;
+    font-size:25px;
+}
+
+.card p{
+    font-size:19px;
+    line-height:1;
+}
+
+/*----------------------*/
+/* TEAM */
+/*----------------------*/
+
+.team-box{
+    margin:60px 0;
+    background:#F8E8A3;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.team-box h2{
+    color:#E58331;
+    margin-bottom:15px;
+    font-size:35px;
+}
+
+.team-box p{
+    font-size:22px;
+}
+
+/*----------------------*/
+/* VISIT */
+/*----------------------*/
+
+.visit-title{
+    text-align:center;
+    color:#E58331;
+    font-size:38px;
+    margin-bottom:35px;
+}
+
+.visit-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.visit-left{
+    text-align:center;
+}
+
+.visit-left p{
+    font-size:22px;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.visit-left h3{
+    color:#E58331;
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.visit-left h4{
+    font-size:24px;
+    line-height:1;
+    font-weight:600;
+}
+
+.visit-right img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/*----------------------*/
+/* RESPONSIVE */
+/*----------------------*/
+
+@media(max-width:1200px){
+
+.believe-grid{
+grid-template-columns:repeat(5,1fr);
+}
+
+}
+
+@media(max-width:900px){
+
+.section-title,
+.about-text h2,
+.story-content h2,
+.believe-title,
+.visit-title{
+font-size:32px;
+}
+
+.about-row,
+.story-row,
+.visit-row{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.story-row{
+display:flex;
+flex-direction:column-reverse;
+}
+
+.about-text p,
+.story-content p,
+.visit-left p,
+.team-box p{
+font-size:18px;
+}
+
+.believe-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.about-section{
+padding:30px 15px 50px;
+}
+
+.section-title,
+.about-text h2,
+.story-content h2,
+.believe-title,
+.visit-title{
+font-size:28px;
+}
+
+.about-text p,
+.story-content p,
+.visit-left p,
+.card p,
+.team-box p{
+font-size:16px;
+}
+
+.card h3{
+font-size:21px;
+}
+
+.believe-grid{
+grid-template-columns:1fr;
+}
+
+.team-box h2{
+font-size:28px;
+}
+
+.visit-left h3{
+font-size:28px;
+}
+
+.visit-left h4{
+font-size:18px;
+}
+
+}
+
+</style>
+
+<section class="about-section">
+
+<div class="about-container">
+
+<h1 class="section-title">ABOUT US</h1>
+
+<!-- About -->
+
+<div class="about-row">
+
+<div class="about-text">
+
+<h2>Baking From the Heart Since 2012</h2>
+
+<p>
+At Cherii Bakery, every loaf, pastry, and cake tells a story.
+What started as a small kitchen passion has blossomed into a
+community favourite. We believe in using time-honored recipes,
+fresh local ingredients, and a generous sprinkle of love in every bite.
+</p>
+
+<p>
+Our mission is to bring handcrafted baked goods made daily
+with care and dedication. Whether it's your morning bread or a
+special occasion cake, we treat each creation as if it's for family.
+</p>
+
+<p>
+We're proud to serve our neighborhood, support local farmers,
+and bake a little happiness into every day.
+</p>
+
+</div>
+
+<div class="about-img">
+
+<img src="{% static 'images/a8.png' %}" alt="About Bakery">
+
+</div>
+
+</div>
+
+<!-- Story -->
+
+<div class="story-row">
+
+<div class="story-image">
+
+<img src="{% static 'images/a5.png' %}" alt="Our Story">
+
+</div>
+
+<div class="story-content">
+
+<h2>OUR STORY</h2>
+
+<p>
+
+Cherii Bakery began as a home kitchen dream and quickly became
+a beloved neighborhood treasure. Founded on the values of
+quality, community and homemade charm, we bake everything
+fresh each day using family recipes and locally sourced
+ingredients.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Believe -->
+
+<h2 class="believe-title">WHAT WE BELIEVE IN</h2>
+
+<div class="believe-grid">
+
+<div class="card">
+<div class="icon">🍞</div>
+<h3>Fresh, Handcrafted Daily</h3>
+<p>Every morning our bakers prepare fresh breads, cakes and pastries made from wholesome ingredients.</p>
+</div>
+
+<div class="card">
+<div class="icon">🌾</div>
+<h3>Locally Sourced Ingredients</h3>
+<p>We partner with trusted local farms to ensure quality ingredients while supporting our community.</p>
+</div>
+
+<div class="card">
+<div class="icon">🤲</div>
+<h3>Unique & Custom Creations</h3>
+<p>From croissants to celebration cakes, we bake with creativity and attention to every detail.</p>
+</div>
+
+<div class="card">
+<div class="icon">❤️</div>
+<h3>Warm, Welcoming Atmosphere</h3>
+<p>More than a bakery, we're your neighbourhood spot for smiles, coffee and delicious treats.</p>
+</div>
+
+<div class="card">
+<div class="icon">🎓</div>
+<h3>Passion for Excellence</h3>
+<p>Every loaf and cake reflects our dedication to craftsmanship and customer happiness.</p>
+</div>
+
+</div>
+
+<!-- Team -->
+
+<div class="team-box">
+
+<h2>MEET THE BAKERY</h2>
+
+<p>
+
+Our team is made up of passionate bakers who bring skill,
+creativity and care to every product. From our Head Baker to
+our pastry chefs, everyone shares a commitment to quality and
+customer happiness.
+
+</p>
+
+</div>
+
+<!-- Visit -->
+
+<h2 class="visit-title">COME VISIT US</h2>
+
+<div class="visit-row">
+
+<div class="visit-left">
+
+<p>
+We're serving smiles across Tamil Nadu with many franchise locations!
+</p>
+
+<p>
+Drop by your nearest branch and enjoy our fresh handcrafted treats.
+</p>
+
+<h3>Head Office:</h3>
+
+<h4>
+
+Cherii Bakery<br>
+
+No.45, Anna Salai,<br>
+
+T. Nagar,<br>
+
+Chennai - 600017,<br>
+
+Tamil Nadu, India
+
+</h4>
+
+</div>
+
+<div class="visit-right">
+
+<img src="{% static 'images/a6.png' %}" alt="Visit Bakery">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

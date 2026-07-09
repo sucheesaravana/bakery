@@ -1,0 +1,250 @@
+{% extends "bakeryapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+.blog-page{
+    background:#fff7ef;
+    padding:40px 60px;
+   }
+
+.blog-title{
+    text-align:center;
+    color:#d97b28;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+.top-section{
+    display:flex;
+    gap:60px;
+    align-items:center;
+    margin-bottom:70px;
+}
+
+.top-section img{
+    width:430px;
+    border-radius:20px;
+}
+
+.blog-intro{
+    flex:1;
+    text-align:center;
+}
+
+.blog-intro h2{
+    font-size:42px;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.blog-intro p{
+    font-size:23px;
+    line-height:1;
+}
+
+.content-section{
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+}
+
+.left-content{
+    flex:1;
+}
+
+.left-content h2{
+    color:#d97b28;
+    margin-bottom:40px;
+    font-size:40px;
+}
+
+.blog-item{
+    margin-bottom:40px;
+}
+
+.blog-item h3{
+    color:#d59a5d;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.blog-item p{
+    font-size:22px;
+    line-height:1;
+}
+
+.right-image img{
+    width:470px;
+    border-radius:20px;
+}
+
+.bottom-text{
+    text-align:center;
+    margin-top:60px;
+    font-size:25px;
+    font-weight:600;
+    color:#7a5b3c;
+    line-height:1.6;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.top-section,
+.content-section{
+    flex-direction:column;
+}
+
+.top-section img,
+.right-image img{
+    width:100%;
+}
+
+.blog-page{
+    padding:30px;
+}
+
+.blog-intro h2{
+    font-size:32px;
+}
+
+.blog-title{
+    font-size:34px;
+}
+
+.left-content h2{
+    font-size:32px;
+}
+
+.blog-item h3{
+    font-size:26px;
+}
+
+.blog-item p{
+    font-size:18px;
+}
+
+}
+
+</style>
+
+
+<div class="blog-page">
+
+    <h1 class="blog-title">
+        Welcome to Our Bakery Blog
+    </h1>
+
+    <div class="top-section">
+
+        <img src="{% static 'images/a1.png' %}" alt="Bread">
+
+        <div class="blog-intro">
+
+            <h2>
+                Fresh Bakes, Sweet Stories & Artisan Inspiration
+            </h2>
+
+            <p>
+                At Cherii Bakery, our passion for baking goes beyond the oven—it's
+                a story we love to share. This blog is your go-to destination
+                for everything sweet, savory, and lovingly handmade.
+                Whether you're a fellow baker, a food lover, or simply someone
+                who enjoys the warmth of freshly baked bread,
+                our blog is filled with something just for you.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="content-section">
+
+        <div class="left-content">
+
+            <h2>What You'll Find Here:</h2>
+
+            <div class="blog-item">
+                <h3>Behind-the-Scenes Stories</h3>
+
+                <p>
+                    Get a peek inside our kitchen, meet our talented bakers,
+                    and learn what goes into creating your favorite pastries,
+                    cakes and loaves.
+                </p>
+            </div>
+
+            <div class="blog-item">
+
+                <h3>Seasonal Specials & New Arrivals</h3>
+
+                <p>
+                    Be the first to know about our latest menu additions,
+                    seasonal treats and limited-edition goodies.
+                </p>
+
+            </div>
+
+            <div class="blog-item">
+
+                <h3>Recipes & Baking Tips</h3>
+
+                <p>
+                    Try your hand at some of our favorite recipes and get
+                    expert tips to help you bake like a pro at home.
+                </p>
+
+            </div>
+
+            <div class="blog-item">
+
+                <h3>Customer Spotlights & Events</h3>
+
+                <p>
+                    We love our community! Read about our amazing customers,
+                    featured events and special moments shared in our bakery.
+                </p>
+
+            </div>
+
+            <div class="blog-item">
+
+                <h3>Sustainability & Ingredients</h3>
+
+                <p>
+                    Learn more about the ingredients we use,
+                    our sourcing practices and how we're working to bake
+                    better—for you and the planet.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="right-image">
+
+            <img src="{% static 'images/a4.png' %}" alt="Cake">
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-text">
+
+        Whether you're here for mouthwatering ideas or curious about what's next
+        in our oven, our blog is a delicious stop on your journey.
+        Stay connected with us, leave a comment, and don't forget to subscribe
+        so you never miss a crumb!
+
+    </div>
+
+</div>
+
+{% endblock %}

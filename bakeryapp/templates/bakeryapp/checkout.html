@@ -1,0 +1,602 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+/* =========================
+   BODY
+========================= */
+
+body{
+    background:#faf4ec;
+    margin:0;
+    padding:0;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.checkout-container{
+    width:95%;
+    max-width:1300px;
+    margin:50px auto;
+}
+
+.title{
+    text-align:center;
+    color:#d97c30;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:45px;
+    letter-spacing:1px;
+    margin-top: 1%;
+}
+
+/* =========================
+   PRODUCT SECTION
+========================= */
+
+.product-section{
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.product-image{
+    flex:1;
+}
+
+.product-image img{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.product-details{
+    flex:1;
+}
+
+.brand{
+    color:#777;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.product-details h2{
+    color:#d97c30;
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.product-details p{
+    font-size:19px;
+    line-height:1.8;
+    color:#555;
+    text-align:justify;
+}
+
+.price{
+    font-size:45px;
+    font-weight:bold;
+    color:#222;
+    margin:25px 0;
+}
+
+/* =========================
+   WEIGHT BUTTONS
+========================= */
+
+.weight-btn{
+    padding:12px 22px;
+    margin:8px 8px 8px 0;
+    border:2px solid #d97c30;
+    border-radius:30px;
+    background:#fff;
+    color:#d97c30;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.weight-btn:hover{
+    background:#d97c30;
+    color:#fff;
+}
+
+.weight-btn.active{
+    background:#ffd233;
+    border-color:#ffd233;
+    color:#000;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
+    margin-top:40px;
+    width:100%;
+    background:#fff8f0;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.summary table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.summary td{
+    padding:15px 5px;
+    font-size:20px;
+    border-bottom:1px solid #e6e6e6;
+}
+
+.summary tr:last-child td{
+    border-bottom:none;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* =========================
+   QUANTITY
+========================= */
+
+#quantity{
+    width:90px;
+    padding:10px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:center;
+}
+
+/* =========================
+   ADDRESS SECTION
+========================= */
+
+.address-section{
+    display:flex;
+    gap:60px;
+    align-items:center;
+    margin-top:70px;
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.address-form{
+    flex:1;
+}
+
+.address-form label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#444;
+    font-size:17px;
+}
+
+.address-form input,
+.address-form textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+.address-form input:focus,
+.address-form textarea:focus{
+    outline:none;
+    border-color:#d97c30;
+    box-shadow:0 0 6px rgba(217,124,48,.25);
+}
+
+.address-form textarea{
+    resize:none;
+}
+
+/* =========================
+   ADDRESS BUTTON
+========================= */
+
+.address-btn{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    background:#ffd233;
+    border:none;
+    border-radius:35px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.address-btn:hover{
+    background:#ffc107;
+}
+
+/* =========================
+   ADDRESS IMAGE
+========================= */
+
+.address-image{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.address-image img{
+    width:100%;
+    max-width:450px;
+    height:auto;
+    display:block;
+}
+
+/* =========================
+   BUTTON GROUP
+========================= */
+
+.button-group{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    margin:60px auto 20px;
+}
+
+.cart-btn,
+.pay-btn{
+    width:280px;
+    height:58px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    border-radius:35px;
+    font-size:18px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.cart-btn{
+    background:#fff;
+    color:#d97c30;
+    border:2px solid #d97c30;
+}
+
+.cart-btn:hover{
+    background:#d97c30;
+    color:#fff;
+}
+
+.pay-btn{
+    background:#ffd233;
+    color:#000;
+    border:none;
+}
+
+.pay-btn:hover{
+    background:#ffc107;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+.product-section{
+    flex-direction:column;
+    padding:25px;
+}
+
+.product-image img{
+    height:350px;
+}
+
+.address-section{
+    flex-direction:column;
+    padding:25px;
+}
+
+.address-image img{
+    height:350px;
+}
+
+.summary{
+    width:100%;
+}
+
+.button-group{
+    flex-direction:column;
+}
+
+.cart-btn,
+.pay-btn{
+    width:100%;
+}
+
+.title{
+    font-size:34px;
+}
+
+.product-details h2{
+    font-size:30px;
+}
+
+.price{
+    font-size:36px;
+}
+
+.summary td{
+    font-size:18px;
+}
+
+}
+</style>
+
+<div class="checkout-container">
+
+    <h1 class="title">PRODUCT DETAILS</h1>
+
+    <div class="product-section">
+
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="{% static 'images/c1.jpg' %}" alt="Cake">
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+
+            <p class="brand">Cherii Bakery</p>
+
+            <h2>CHOCO DELIGHT CAKE</h2>
+
+            <p>
+                This delectable treat is a heavenly combination of rich,
+                velvety chocolate and a melt-in-your-mouth texture.
+            </p>
+
+            <div class="price">
+                ₹ <span id="price">400</span>
+            </div>
+
+            <h3>Select Weight</h3>
+
+            <button class="weight-btn active" onclick="changePrice(this,500,400)">500 G</button>
+            <button class="weight-btn" onclick="changePrice(this,1000,800)">1 KG</button>
+            <button class="weight-btn" onclick="changePrice(this,2000,1600)">2 KG</button>
+            <button class="weight-btn" onclick="changePrice(this,3000,2400)">3 KG</button>
+            <button class="weight-btn" onclick="changePrice(this,4000,3200)">4 KG</button>
+            <button class="weight-btn" onclick="changePrice(this,5000,4000)">5 KG</button>
+
+            <div class="summary">
+
+                <table>
+
+                    <tr>
+                        <td><b>Weight</b></td>
+                        <td id="weightText">500 G Cake</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Quantity</b></td>
+                        <td>
+                            <select id="quantity" onchange="updateTotal()">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Price / Cake</b></td>
+                        <td>₹ <span id="pricePerCake">400</span></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Total Amount</b></td>
+                        <td><b>₹ <span id="total">400</span></b></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div> <!-- End product-details -->
+
+    </div> <!-- End product-section -->
+
+
+    <!-- ================= Address Section ================= -->
+
+    <h1 class="title">ADD ADDRESS</h1>
+
+    <div class="address-section">
+
+        <!-- Left Side -->
+        <div class="address-form">
+
+            <label>Name *</label>
+<input type="text" id="name" placeholder="Enter your name">
+
+<label>Delivery Location *</label>
+<input type="text" id="location" placeholder="Enter delivery location">
+
+<label>Mobile Number *</label>
+<input type="tel" id="mobile" placeholder="Enter mobile number">
+
+<label>Add Notes</label>
+<input type="text" id="notes" placeholder="Optional">
+
+<label>Address *</label>
+<textarea id="address" rows="5" placeholder="Enter complete address"></textarea>
+
+            <button class="address-btn">
+                ADD ADDRESS
+            </button>
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="address-image">
+            <img src="{% static 'images/a7.png' %}" alt="Cake">
+        </div>
+
+    </div>
+
+    <!-- Hidden Values -->
+    <input type="hidden" id="amount" value="400">
+    <input type="hidden" id="weight" value="500 G">
+    <input type="hidden" id="unitPrice" value="400">
+
+    <!-- Buttons -->
+    <div class="button-group">
+
+        <button class="cart-btn" onclick="addToCart()">
+            ADD TO CART
+        </button>
+
+        <button class="pay-btn" onclick="goToPayment()">
+    PAY & ORDER NOW
+</button>
+
+    </div>
+
+</div>
+
+<script>
+
+function changePrice(button, weight, price){
+
+    document.querySelectorAll(".weight-btn").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.getElementById("price").innerHTML = price;
+
+    document.getElementById("pricePerCake").value = price;
+
+    if(weight==500){
+        document.getElementById("weightText").innerHTML="500 G Cake";
+        document.getElementById("weight").value="500 G";
+    }
+    else{
+        document.getElementById("weightText").innerHTML=(weight/1000)+" KG Cake";
+        document.getElementById("weight").value=(weight/1000)+" KG";
+    }
+
+    updateTotal();
+}
+
+function updateTotal(){
+
+    let qty = parseInt(document.getElementById("quantity").value);
+
+    let price = parseInt(document.getElementById("unitPrice").value);
+
+    let total = qty * price;
+
+    document.getElementById("total").innerHTML = total;
+
+    document.getElementById("amount").value = total;
+}
+
+
+function addToCart(){
+
+    let count = localStorage.getItem("cartCount");
+
+    if(count == null){
+        count = 0;
+    }
+
+    count = parseInt(count) + 1;
+
+    localStorage.setItem("cartCount", count);
+
+    document.getElementById("cart-count").innerHTML = count;
+
+    alert("Your product is added to cart.");
+}
+
+function goToPayment(){
+
+    let amount = document.getElementById("amount").value;
+    let weight = document.getElementById("weight").value;
+
+    window.location.href =
+        "{% url 'payment' %}?amount=" + amount +
+        "&weight=" + encodeURIComponent(weight);
+}
+
+
+function goToPayment(){
+
+    let name = document.getElementById("name").value.trim();
+    let location = document.getElementById("location").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let address = document.getElementById("address").value.trim();
+
+    if(name === ""){
+        alert("Please enter your name.");
+        return;
+    }
+
+    if(location === ""){
+        alert("Please enter the delivery location.");
+        return;
+    }
+
+    if(mobile === ""){
+        alert("Please enter your mobile number.");
+        return;
+    }
+
+    if(!/^[6-9]\d{9}$/.test(mobile)){
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+    }
+
+    if(address === ""){
+        alert("Please enter your address.");
+        return;
+    }
+
+    // Save address if needed
+    localStorage.setItem("customerName", name);
+    localStorage.setItem("deliveryLocation", location);
+    localStorage.setItem("mobile", mobile);
+    localStorage.setItem("address", address);
+
+    // Go to payment page
+    window.location.href = "/payment/";
+
+}
+
+
+</script>
+
+{% endblock %}

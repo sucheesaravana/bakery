@@ -1,0 +1,1508 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Cherii Bakes{% endblock %}</title>
+
+    <!-- League Spartan Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <style>
+
+        *{
+
+            margin:0;
+
+            padding:0;
+
+            box-sizing:border-box;
+
+            font-family:'League Spartan', sans-serif;
+
+        }
+
+        :root{
+
+            --primary-brown:#D99A6C;
+
+            --soft-yellow:#F3E5AB;
+
+            --page-cream:#FFF8F0;
+
+            --text-dark:#1f1f1f;
+
+            --white:#ffffff;
+
+            --accent-orange:#d97f32;
+
+            --border-light:#e7d7c7;
+
+            --shadow:0 4px 14px rgba(0,0,0,0.08);
+
+        }
+
+        html{
+
+            scroll-behavior:smooth;
+
+        }
+/*==============================
+            NAVBAR
+===============================*/
+
+.top-navbar{
+    position:sticky;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(217,154,108,.96);
+    backdrop-filter:blur(10px);
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+    z-index:999;
+}
+
+.nav-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 0;
+}
+
+/*==============================
+            LOGO
+===============================*/
+
+.logo-area img{
+    width:110px;
+    transition:.4s;
+}
+
+.logo-area img:hover{
+    transform:scale(1.08);
+}
+
+/*==============================
+          NAVIGATION
+===============================*/
+
+.nav-center{
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+.menu{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    list-style:none;
+}
+
+.menu li a{
+    position:relative;
+    text-decoration:none;
+    color:#222;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+    padding:5px 0;
+}
+
+.menu li a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:3px;
+    background:#fff;
+    border-radius:10px;
+    transition:.35s;
+}
+
+.menu li a:hover{
+    color:#fff;
+}
+
+.menu li a:hover::after{
+    width:100%;
+}
+
+/*==============================
+          SEARCH BAR
+===============================*/
+
+.search-bar{
+    position:relative;
+    width:280px;
+}
+
+.search-bar span{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    font-size:15px;
+}
+
+.search-bar input{
+    width:100%;
+    height:44px;
+    border:none;
+    outline:none;
+    border-radius:30px;
+    padding-left:45px;
+    padding-right:15px;
+    font-size:15px;
+    background:#fff;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.search-bar input:focus{
+    box-shadow:0 0 0 3px rgba(255,216,61,.4);
+}
+
+/*==============================
+        RIGHT SECTION
+===============================*/
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+.wishlist-icon{
+    position:relative;
+    font-size:28px;
+    color:#ff4d6d;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+/*==============================
+          NAV ICONS
+===============================*/
+
+.nav-icons{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-icons a{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#fff;
+    color:#d97f32;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:18px;
+    transition:.35s;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.nav-icons a:hover{
+    background:#d97f32;
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+/*==============================
+         LOGIN BUTTON
+===============================*/
+
+.login-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#ffd83d,#ffb703);
+    color:#222;
+    padding:12px 24px;
+    border-radius:30px;
+    font-weight:700;
+    transition:.35s;
+    box-shadow:0 8px 20px rgba(255,190,0,.35);
+}
+
+.login-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,190,0,.45);
+}
+
+/*==============================
+         HAMBURGER
+===============================*/
+
+.hamburger{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+
+.hamburger span{
+    display:block;
+    width:28px;
+    height:3px;
+    background:#222;
+    margin:6px 0;
+    transition:.3s;
+}
+
+.hamburger.open span:nth-child(1){
+    transform:translateY(9px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger.open span:nth-child(3){
+    transform:translateY(-9px) rotate(-45deg);
+}
+
+/*==============================
+          TABLET
+===============================*/
+
+@media(max-width:992px){
+
+    .nav-wrapper{
+        flex-wrap:wrap;
+    }
+
+    .nav-center{
+        gap:20px;
+    }
+
+    .menu{
+        gap:18px;
+    }
+
+    .menu li a{
+        font-size:15px;
+    }
+
+    .search-bar{
+        width:220px;
+    }
+
+}
+
+/*==============================
+          MOBILE
+===============================*/
+
+@media(max-width:768px){
+
+    .hamburger{
+        display:block;
+    }
+
+    .login-btn{
+        display:none;
+    }
+
+    .nav-wrapper{
+        flex-wrap:wrap;
+    }
+
+    .nav-center{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        max-height:0;
+        overflow:hidden;
+        background:#fff;
+        border-radius:15px;
+        margin-top:15px;
+        transition:.4s;
+    }
+
+    .nav-center.active{
+        max-height:550px;
+        padding:20px;
+    }
+
+    .menu{
+        flex-direction:column;
+        width:100%;
+        gap:15px;
+    }
+
+    .menu li{
+        width:100%;
+    }
+
+    .menu li a{
+        display:block;
+        padding:12px;
+        background:#f8f8f8;
+        border-radius:10px;
+    }
+
+    .menu li a:hover{
+        background:#d99a6c;
+        color:#fff;
+    }
+
+    .search-bar{
+        width:100%;
+        margin-top:15px;
+    }
+
+    .search-bar input{
+        width:100%;
+    }
+
+    .nav-right{
+        margin-left:auto;
+    }
+
+}
+
+/*==============================
+      SMALL MOBILE
+===============================*/
+
+@media(max-width:480px){
+
+    .logo-area img{
+        width:80px;
+    }
+
+    .nav-icons{
+        gap:10px;
+    }
+
+    .nav-icons a{
+        width:38px;
+        height:38px;
+        font-size:16px;
+    }
+
+    .search-bar input{
+        height:40px;
+        font-size:14px;
+    }
+
+}
+        body{
+
+            background:var(--page-cream);
+
+            color:var(--text-dark);
+
+            overflow-x:hidden;
+
+        }
+
+        img{
+
+            max-width:100%;
+
+            display:block;
+
+        }
+
+        a{
+
+            text-decoration:none;
+
+            color:inherit;
+
+        }
+
+        ul{
+
+            list-style:none;
+
+        }
+
+        button,
+
+        input{
+
+            font-family:'League Spartan', sans-serif;
+
+        }
+
+        .container{
+
+            width:min(92%, 1380px);
+
+            margin:0 auto;
+
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .top-navbar{
+
+            background:var(--primary-brown);
+
+            position:sticky;
+
+            top:0;
+
+            z-index:9999;
+
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+
+        }
+
+        .nav-wrapper{
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+            gap:18px;
+
+            padding:14px 0;
+
+            position:relative;
+
+        }
+
+        .logo-area{
+
+            flex-shrink:0;
+
+        }
+
+        .logo-area img{
+
+            width:110px;
+
+            height:auto;
+
+            object-fit:contain;
+
+        }
+
+        .nav-center{
+
+            flex:1;
+
+            display:flex;
+
+            flex-direction:column;
+
+            align-items:center;
+
+            gap:10px;
+
+        }
+
+        .menu{
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            flex-wrap:wrap;
+
+            gap:28px;
+
+        }
+
+        .menu li a{
+
+            font-size:16px;
+
+            font-weight:700;
+
+            text-transform:uppercase;
+
+            color:#111;
+
+            transition:0.3s ease;
+
+            letter-spacing:0.3px;
+
+            white-space:nowrap;
+
+        }
+
+        .menu li a:hover{
+
+            color:#fff;
+
+        }
+
+        .search-bar{
+
+            width:min(430px, 100%);
+
+            position:relative;
+
+        }
+
+        .search-bar input{
+
+            width:100%;
+
+            height:38px;
+
+            border-radius:12px;
+
+            border:2px solid #ead3bf;
+
+            outline:none;
+
+            padding:0 16px 0 42px;
+
+            background:#fff;
+
+            font-size:13px;
+
+            font-weight:500;
+
+            color:#555;
+
+        }
+
+        .search-bar span{
+
+            position:absolute;
+
+            left:14px;
+
+            top:50%;
+
+            transform:translateY(-50%);
+
+            font-size:14px;
+
+            color:#8a8a8a;
+
+        }
+
+        .nav-right{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:12px;
+
+            flex-shrink:0;
+
+        }
+
+        .nav-icons{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:10px;
+
+            font-size:18px;
+
+            color:#111;
+
+        }
+
+        .login-btn{
+
+            border:none;
+
+            background:#ffd83d;
+
+            color:#111;
+
+            padding:11px 28px;
+
+            border-radius:14px;
+
+            font-size:16px;
+
+            font-weight:800;
+
+            cursor:pointer;
+
+            transition:0.3s ease;
+
+            white-space:nowrap;
+
+        }
+
+        .login-btn:hover{
+
+            transform:translateY(-1px);
+
+            background:#ffcf14;
+
+        }
+
+        /* hamburger */
+
+        .hamburger{
+
+            display:none;
+
+            width:42px;
+
+            height:42px;
+
+            border:none;
+
+            background:transparent;
+
+            cursor:pointer;
+
+            position:relative;
+
+            z-index:10001;
+
+        }
+
+        .hamburger span{
+
+            display:block;
+
+            width:28px;
+
+            height:3px;
+
+            background:#111;
+
+            margin:5px auto;
+
+            border-radius:2px;
+
+            transition:0.3s ease;
+
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer{
+
+            background:var(--soft-yellow);
+
+            position:relative;
+
+            overflow:hidden;
+
+            padding:42px 0 24px;
+
+            margin-top:0;
+
+        }
+
+        .footer::before{
+
+            content:"";
+
+            position:absolute;
+
+            inset:0;
+
+            background:
+
+                radial-gradient(circle at 10% 20%, rgba(217,154,108,0.12) 0 16px, transparent 16px),
+
+                radial-gradient(circle at 28% 72%, rgba(217,154,108,0.12) 0 16px, transparent 16px),
+
+                radial-gradient(circle at 52% 22%, rgba(217,154,108,0.12) 0 16px, transparent 16px),
+
+                radial-gradient(circle at 78% 65%, rgba(217,154,108,0.12) 0 16px, transparent 16px),
+
+                radial-gradient(circle at 92% 32%, rgba(217,154,108,0.12) 0 16px, transparent 16px);
+
+            opacity:0.95;
+
+        }
+
+        .footer-inner{
+
+            position:relative;
+
+            z-index:1;
+
+            display:grid;
+
+            grid-template-columns:1.1fr 1fr 1fr 1fr;
+
+            gap:34px;
+
+            align-items:flex-start;
+
+        }
+
+        .footer-logo img{
+
+            width:120px;
+
+        }
+
+        .footer h4{
+
+            font-size:28px;
+
+            font-weight:800;
+
+            margin-bottom:14px;
+
+            color:#111;
+
+        }
+
+        .footer ul li{
+
+            margin-bottom:12px;
+
+            font-size:18px;
+
+            line-height:1.3;
+
+            font-weight:500;
+
+        }
+
+        .contact-item{
+
+            display:flex;
+
+            align-items:flex-start;
+
+            gap:10px;
+
+            margin-bottom:14px;
+
+            font-size:18px;
+
+            line-height:1.35;
+
+            font-weight:500;
+
+        }
+
+        .socials{
+
+            display:flex;
+
+            gap:12px;
+
+            margin-top:14px;
+
+            flex-wrap:wrap;
+
+        }
+
+        .socials a{
+
+            width:38px;
+
+            height:38px;
+
+            border-radius:50%;
+
+            background:#111;
+
+            color:#fff;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            font-size:17px;
+
+            font-weight:700;
+
+        }
+
+        .footer-bottom{
+
+            position:relative;
+
+            z-index:1;
+
+            text-align:center;
+
+            margin-top:28px;
+
+            font-size:15px;
+
+            font-weight:500;
+
+            color:#333;
+
+        }
+
+        .section-title{
+
+            text-align:center;
+
+            font-size:40px;
+
+            font-weight:800;
+
+            color:var(--accent-orange);
+
+            text-transform:uppercase;
+
+            margin-bottom:28px;
+
+            line-height:1.1;
+
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 1024px){
+
+            .menu{
+
+                gap:18px;
+
+            }
+
+            .menu li a{
+
+                font-size:14px;
+
+            }
+
+            .search-bar{
+
+                width:min(360px, 100%);
+
+            }
+
+            .footer-inner{
+
+                grid-template-columns:1fr 1fr;
+
+            }
+
+        }
+
+        /* ================= MOBILE NAV ================= */
+
+        @media (max-width: 768px){
+
+            .nav-wrapper{
+
+                padding:12px 0;
+
+                flex-wrap:wrap;
+
+                gap:10px;
+
+            }
+
+            .logo-area img{
+
+                width:92px;
+
+            }
+
+            .hamburger{
+
+                display:block;
+
+                order:3;
+
+                margin-left:auto;
+
+            }
+
+            .nav-right{
+
+                order:2;
+
+                margin-left:auto;
+
+                gap:10px;
+
+            }
+
+            .nav-icons{
+
+                font-size:16px;
+
+                gap:8px;
+
+            }
+
+            .login-btn{
+
+                padding:9px 18px;
+
+                font-size:14px;
+
+                border-radius:12px;
+
+            }
+
+            .nav-center{
+
+                order:4;
+
+                width:100%;
+
+                max-height:0;
+
+                overflow:hidden;
+
+                transition:max-height 0.35s ease;
+
+                align-items:stretch;
+
+                background:rgba(255,248,240,0.95);
+
+                border-radius:14px;
+
+            }
+
+            .nav-center.active{
+
+                max-height:500px;
+
+                padding:14px 14px 16px;
+
+                margin-top:6px;
+
+            }
+
+            .menu{
+
+                flex-direction:column;
+
+                align-items:flex-start;
+
+                gap:14px;
+
+                width:100%;
+
+                padding-bottom:14px;
+
+            }
+
+            .menu li{
+
+                width:100%;
+
+            }
+
+            .menu li a{
+
+                display:block;
+
+                width:100%;
+
+                font-size:15px;
+
+                padding:4px 0;
+
+            }
+
+            .search-bar{
+
+                width:100%;
+
+            }
+
+            .search-bar input{
+
+                height:40px;
+
+                font-size:13px;
+
+            }
+
+            .footer{
+
+                padding:34px 0 20px;
+
+            }
+
+            .footer-inner{
+
+                grid-template-columns:1fr;
+
+                gap:24px;
+
+            }
+
+            .footer h4{
+
+                font-size:24px;
+
+            }
+
+            .footer ul li,
+
+            .contact-item{
+
+                font-size:16px;
+
+            }
+
+            .section-title{
+
+                font-size:28px;
+
+                margin-bottom:22px;
+
+            }
+
+        }
+
+        @media (max-width: 480px){
+
+            .container{
+
+                width:92%;
+
+            }
+
+            .nav-wrapper{
+
+                gap:8px;
+
+            }
+
+            .logo-area img{
+
+                width:84px;
+
+            }
+
+            .nav-icons{
+
+                gap:6px;
+
+                font-size:15px;
+
+            }
+
+            .login-btn{
+
+                padding:8px 14px;
+
+                font-size:13px;
+
+            }
+
+            .hamburger{
+
+                width:38px;
+
+                height:38px;
+
+            }
+
+            .hamburger span{
+
+                width:24px;
+
+            }
+
+            .footer-logo img{
+
+                width:100px;
+
+            }
+
+            .footer h4{
+
+                font-size:22px;
+
+            }
+
+            .footer-bottom{
+
+                font-size:14px;
+
+            }
+
+            .section-title{
+
+                font-size:24px;
+
+            }
+
+        }
+.nav-icon{
+    position:relative;
+    display:inline-block;
+}
+
+.cart-count{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:red;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#wishlist-count{
+    position:absolute;
+    top:-8px;
+    right:-12px;
+    background:red;
+    color:white;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+}
+    </style>
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+
+    <header class="top-navbar">
+        <div class="container nav-wrapper">
+
+            <!-- Logo -->
+            <div class="logo-area">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/b1.png' %}" alt="Cherii Bakes Logo">
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-center" id="mobileMenu">
+
+                <ul class="menu">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT US</a></li>
+                    <li><a href="{% url 'products' %}">Our Products</a></li>
+                    <li><a href="{% url 'blog' %}">Blog</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+                </ul>
+
+                <div class="search-bar">
+    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Products..."
+        onkeypress="searchProduct(event)">
+</div>
+
+            </nav>
+
+           <!-- Right Icons -->
+<div class="nav-right">
+
+    <div class="nav-icons">
+
+        <!-- Wishlist -->
+        <a href="{% url 'wishlist' %}" class="wishlist-icon">
+    ❤️ <span id="wishlist-count">0</span>
+</a>
+
+        <!-- Notifications -->
+        <a href="#" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+        </a>
+
+        <!-- Shopping Cart -->
+        <div class="nav-icon">
+
+            <a href="{% url 'addtocard' %}" title="Shopping Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+
+            <span id="cart-count" class="cart-count">0</span>
+
+        </div>
+
+    </div>
+
+    <!-- Login Button -->
+    <a href="{% url 'login' %}" class="login-btn">
+        <i class="fa-solid fa-user"></i>
+        Login
+    </a>
+
+</div>
+            <!-- Mobile Menu -->
+            <button class="hamburger" id="menuToggle">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+    </header>
+
+    <!-- ===================== PAGE CONTENT ===================== -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-inner">
+
+            <!-- Logo -->
+            <div class="footer-logo">
+
+                <img src="{% static 'images/b7.png' %}" alt="Cherii Bakes">
+
+                <p style="margin-top:20px;line-height:1.8;color:#555;font-size:17px;">
+                    Freshly baked breads, cookies, cakes and healthy snacks
+                    made with premium ingredients and lots of love.
+                </p>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li><a href="#">Track Your Order</a></li>
+
+                    <li><a href="#">Privacy Policy</a></li>
+
+                    <li><a href="#">Refund Policy</a></li>
+
+                    <li><a href="#">Terms & Conditions</a></li>
+
+                    <li><a href="#">Contact Us</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Shop -->
+
+            <div>
+
+                <h4>Shop</h4>
+
+                <ul>
+
+                    <li><a href="#">Cookies</a></li>
+
+                    <li><a href="#">Muesli</a></li>
+
+                    <li><a href="#">Granola Bars</a></li>
+
+                    <li><a href="#">Seed Mixes</a></li>
+
+                    <li><a href="#">Gift Boxes</a></li>
+
+                    <li><a href="#">Super Savers</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div>
+
+                <h4>Contact</h4>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>
+                        No.45 Anna Salai,<br>
+                        T. Nagar,<br>
+                        Chennai - 600017
+                    </span>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@cheriibakes.com</span>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 98765 43210</span>
+                </div>
+
+                <h4 style="margin-top:25px;">Follow Us</h4>
+
+                <div class="socials">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr style="margin:40px 0 20px;border:none;border-top:1px solid rgba(0,0,0,.1);">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 <strong>Cherii Bakes</strong>.
+                Crafted with ❤️ in Chennai.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- ===================== MOBILE MENU ===================== -->
+
+    <script>
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuToggle.addEventListener("click", () => {
+
+            mobileMenu.classList.toggle("active");
+            menuToggle.classList.toggle("open");
+
+        });
+
+       document.addEventListener("DOMContentLoaded", function(){
+
+    let count = localStorage.getItem("cartCount") || 0;
+
+    let badge = document.getElementById("cart-count");
+
+    if(badge){
+        badge.innerHTML = count;
+    }
+
+});
+
+function searchProduct(event){
+
+    if(event.key === "Enter"){
+
+        let search = document.getElementById("searchInput").value.toLowerCase().trim();
+
+        if(search === "cake"){
+            window.location.href = "{% url 'cake' %}";
+        }
+        else if(search === "pastry" || search === "pastries"){
+            window.location.href = "{% url 'pastries' %}";
+        }
+        else if(search === "sweet" || search === "sweets"){
+            window.location.href = "{% url 'sweets' %}";
+        }
+        else{
+            alert("Product not found.");
+        }
+
+    }
+
+}
+
+function updateCartCount(){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let count = 0;
+
+    cart.forEach(item=>{
+        count += item.quantity;
+    });
+
+    let badge = document.getElementById("cart-count");
+
+    if(badge){
+        badge.innerHTML = count;
+    }
+
+}
+
+updateCartCount();
+
+window.addEventListener("storage", updateCartCount);
+
+
+
+
+function updateWishlistCount(){
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    let badge = document.getElementById("wishlist-count");
+
+    if(badge){
+        badge.innerHTML = wishlist.length;
+    }
+
+}
+
+updateWishlistCount();
+
+
+</script>
+
+</body>
+
+</html>

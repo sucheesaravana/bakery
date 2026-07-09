@@ -1,0 +1,151 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+
+body{
+    background:#faf4ec;
+}
+
+.pastry-container{
+    max-width:1400px;
+    margin:60px auto;
+    padding:20px;
+}
+
+.pastry-container h1{
+    text-align:center;
+    color:#d97c30;
+    font-size:42px;
+    margin-bottom:45px;
+}
+
+.pastry-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.pastry-card{
+    text-decoration:none;
+    color:#000;
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:.3s;
+    display:block;
+}
+
+.pastry-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.18);
+}
+
+.pastry-image{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    display:block;
+}
+
+.pastry-content{
+    background:#f6e7ae;
+    text-align:center;
+    padding:18px;
+}
+
+.pastry-content h3{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.pastry-content p{
+    font-size:22px;
+    color:#333;
+    font-weight:bold;
+}
+
+@media(max-width:992px){
+
+.pastry-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.pastry-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+<div class="pastry-container">
+
+    <h1>Pastry Products</h1>
+
+    <div class="pastry-grid">
+
+        <!-- Chocolate Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a26.png' %}" class="pastry-image" alt="Chocolate Pastry">
+            <!-- <div class="pastry-content">
+                <h3>CHOCOLATE PASTRY</h3>
+                <p>FROM: Rs.120</p>
+            </div> -->
+        </a>
+
+        <!-- Black Forest Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a27.png' %}" class="pastry-image" alt="Black Forest Pastry">
+            <!-- <div class="pastry-content">
+                <h3>BLACK FOREST PASTRY</h3>
+                <p>FROM: Rs.140</p>
+            </div> -->
+        </a>
+
+        <!-- Red Velvet Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a16.png' %}" class="pastry-image" alt="Red Velvet Pastry">
+            <!-- <div class="pastry-content">
+                <h3>RED VELVET PASTRY</h3>
+                <p>FROM: Rs.150</p>
+            </div> -->
+        </a>
+
+        <!-- Mango Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a20.png' %}" class="pastry-image" alt="Mango Pastry">
+            <!-- <div class="pastry-content">
+                <h3>MANGO PASTRY</h3>
+                <p>FROM: Rs.130</p>
+            </div> -->
+        </a>
+
+        <!-- Strawberry Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a13.png' %}" class="pastry-image" alt="Strawberry Pastry">
+            <!-- <div class="pastry-content">
+                <h3>STRAWBERRY PASTRY</h3>
+                <p>FROM: Rs.135</p>
+            </div> -->
+        </a>
+
+        <!-- Butterscotch Pastry -->
+        <a href="{% url 'checkout' %}" class="pastry-card">
+            <img src="{% static 'images/a12.png' %}" class="pastry-image" alt="Butterscotch Pastry">
+            <!-- <div class="pastry-content">
+                <h3>BUTTERSCOTCH PASTRY</h3>
+                <p>FROM: Rs.145</p>
+            </div> -->
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

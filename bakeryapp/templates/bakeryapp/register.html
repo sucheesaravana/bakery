@@ -1,0 +1,291 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#fff8ef;
+    font-family:'Poppins',sans-serif;
+}
+
+.register-page{
+    width:90%;
+    margin:50px auto;
+}
+
+/* ---------- Tabs ---------- */
+
+.tabs{
+    display:flex;
+    margin-bottom:50px;
+}
+
+.tab{
+    flex:1;
+    text-align:center;
+    padding:20px;
+    text-decoration:none;
+    font-size:38px;
+    font-weight:700;
+    border:2px solid #ea7d2b;
+    color:#ea7d2b;
+    transition:.3s;
+}
+
+.active{
+    background:#ea7d2b;
+    color:#fff;
+}
+
+.tab:hover{
+    background:#ea7d2b;
+    color:#fff;
+}
+
+/* ---------- Layout ---------- */
+
+.register-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
+}
+
+.image-section{
+    width:45%;
+    text-align:center;
+}
+
+.form-section{
+    width:45%;
+}
+
+/* ---------- Image ---------- */
+
+.frame{
+    display:inline-block;
+    background:#ea7d2b;
+    padding:35px;
+    border-radius:20px;
+    transform:rotate(-12deg);
+}
+
+.frame img{
+    width:340px;
+    border-radius:18px;
+    transform:rotate(12deg);
+}
+
+/* ---------- Form ---------- */
+
+label{
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    margin-top:18px;
+    margin-bottom:8px;
+}
+
+.form-control{
+    width:100%;
+    padding:14px;
+    border:1px solid #e8a8a8;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.col{
+    flex:1;
+}
+
+.errorlist{
+    list-style:none;
+    color:red;
+    padding:0;
+    margin:5px 0;
+    font-size:14px;
+}
+
+/* ---------- Checkbox ---------- */
+
+.checkbox{
+    margin-top:20px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.checkbox input{
+    width:20px;
+    height:20px;
+    margin-top:5px;
+}
+
+.checkbox label{
+    margin:0;
+    font-size:16px;
+    font-weight:500;
+}
+
+.checkbox a{
+    color:#ea7d2b;
+    text-decoration:none;
+}
+
+/* ---------- Button ---------- */
+
+.btn-register{
+    width:100%;
+    margin-top:30px;
+    background:#ffd539;
+    border:none;
+    border-radius:40px;
+    padding:16px;
+    font-size:26px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-register:hover{
+    background:#f4c300;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:900px){
+
+.register-content{
+    flex-direction:column;
+}
+
+.image-section,
+.form-section{
+    width:100%;
+}
+
+.frame img{
+    width:260px;
+}
+
+.tab{
+    font-size:24px;
+}
+
+.row{
+    flex-direction:column;
+}
+
+}
+
+</style>
+
+<div class="register-page">
+
+    <!-- Tabs -->
+
+    <div class="tabs">
+
+        <a href="{% url 'login' %}" class="tab">
+            Login
+        </a>
+
+        <a href="{% url 'register' %}" class="tab active">
+            Register
+        </a>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="register-content">
+
+        <!-- Left Image -->
+
+        <div class="image-section">
+
+            <div class="frame">
+
+                <img src="{% static 'images/p1.webp' %}" alt="Cake">
+
+            </div>
+
+        </div>
+
+        <!-- Form -->
+
+        <div class="form-section">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <label>Email</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+
+                <label>Password</label>
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+
+                <div class="row">
+
+                    <div class="col">
+
+                        <label>First Name</label>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+
+                    </div>
+
+                    <div class="col">
+
+                        <label>Last Name</label>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+
+                    </div>
+
+                </div>
+
+                <div class="checkbox">
+
+                    {{ form.terms }}
+
+                    <label>
+
+                        I have read and agree to the
+
+                        <a href="#">Terms</a>
+
+                        and
+
+                        <a href="#">Privacy Policy</a>
+
+                    </label>
+
+                </div>
+
+                {{ form.terms.errors }}
+
+                <button type="submit" class="btn-register">
+
+                    Register
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

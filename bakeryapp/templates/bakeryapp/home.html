@@ -1,0 +1,755 @@
+{% extends 'bakeryapp/base.html' %}
+
+{% load static %}
+
+{% block title %}Cherii Bakes | Home{% endblock %}
+
+{% block extra_css %}
+
+<style>
+
+    /* ================= HERO SECTION ================= */
+
+   .hero-section{
+    background:#fff;
+}
+
+.hero-wrapper{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    min-height:520px;
+}
+
+.hero-wrapper img{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    transition:opacity 0.8s ease-in-out;
+}
+
+.hero-overlay-box{
+    position:absolute;
+    left:0;
+    top:56px;
+    width:min(420px,92%);
+    min-height:260px;
+    background:rgba(85,126,65,0.78);
+    color:#fff;
+    padding:28px 26px 30px;
+    clip-path:polygon(0 0,100% 0,100% 82%,50% 100%,0 82%);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.hero-overlay-box h1{
+    font-size:32px;
+    line-height:1.15;
+    color:#ffd83d;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+.hero-overlay-box p{
+    font-size:20px;
+    line-height:1.3;
+    font-weight:600;
+    margin-bottom:22px;
+    max-width:340px;
+}
+
+.explore-btn{
+    display:inline-block;
+    width:fit-content;
+    background:#ffd83d;
+    color:#111;
+    padding:14px 26px;
+    border-radius:14px;
+    font-size:20px;
+    font-weight:800;
+    text-decoration:none;
+    transition:0.3s;
+    align-content: center;
+     margin:0 auto;        /* Centers the button */
+    
+}
+
+.explore-btn:hover{
+    background:#ffc400;
+    transform:translateY(-2px);
+}
+
+    /* ================= WHY CHOOSE US ================= */
+
+    
+.why-choose{
+    background:#FFF8F0;
+    padding:30px 0;
+}
+
+.why-container{
+    width:100%;
+    max-width:1800px;
+    margin:0 auto;
+    padding:0 20px;
+}
+
+.why-section-title{
+    text-align:center;
+    font-size:40px;
+    font-weight:700;
+    color:#D98B4D;
+    margin-bottom:50px;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:20px;
+    align-items:stretch;
+}
+
+.why-card{
+    background:#fff;
+    border:1px solid #f1e3d3;
+    border-radius:15px;
+    padding:25px 20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:0.3s ease;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    height:100%;
+}
+
+.why-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.why-icon{
+    width:70px;
+    height:70px;
+    background:#D99A6C;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 20px;
+}
+
+.why-icon i{
+    font-size:32px;
+    color:#fff;
+}
+
+.why-card h3{
+    color:#D99A6C;
+    font-size:20px;
+    line-height:1.4;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.why-card p{
+    color:#555;
+    font-size:15px;
+    line-height:1.6;
+}
+    /* ================= FAQ ================= */
+
+  /*=====================================
+            FAQ SECTION
+=====================================*/
+
+.faq-section{
+    padding:80px 0;
+    background:#FFF8F0;
+}
+
+/* .faq-wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:60px;
+} */
+
+/*=====================================
+            LEFT SIDE
+=====================================*/
+
+.faq-left{
+    flex:1;
+}
+
+.container h2{
+    font-size:40px;
+    color:#D98B4D;
+    font-weight:800;
+    margin-bottom:40px;
+    text-transform:uppercase;
+}
+
+.faq-item{
+    background:#ffffff;
+    padding:20px 25px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s ease;
+}
+
+.faq-item:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.faq-item h3{
+    font-size:22px;
+    color:#444;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.faq-item p{
+    font-size:17px;
+    line-height:1.7;
+    color:#666;
+}
+
+/*=====================================
+            RIGHT SIDE
+=====================================*/
+
+.faq-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* .faq-right img{
+    width:100%;
+    max-width:500px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    transition:.4s;
+    margin-top: 0%;
+} */
+
+.faq-right img:hover{
+    transform:scale(1.03);
+}
+
+.faq-wrap{
+    display:flex;
+    align-items:stretch;
+    gap:60px;
+    min-height:900px; /* Adjust as needed */
+}
+
+.faq-right img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+    /* ================= DIVIDER ================= */
+
+    .divider-section{
+    background: #FFF8F0;
+    text-align: center;
+    padding: 8px 0 18px;
+}
+
+.floral-divider{
+    font-size: 110px;
+    line-height: 1;
+    color: #000;
+    font-family: Georgia, serif;
+    display: inline-block;
+}
+      
+
+    
+
+    /* ================= TESTIMONIALS ================= */
+
+    .testimonials{
+
+        background:#FFF8F0;
+
+        padding:4px 0 28px;
+
+    }
+
+    .testimonial-wrap{
+
+        display:grid;
+
+        grid-template-columns:1fr auto 1fr auto;
+
+        gap:22px;
+
+        align-items:center;
+
+        margin-top:18px;
+
+    }
+
+    .testimonial-card{
+
+        background:#fff;
+
+        border:1px solid #ddd;
+
+        border-radius:12px;
+
+        padding:24px 24px 28px;
+
+        min-height:320px;
+
+        text-align:center;
+
+        box-shadow:0 2px 8px rgba(0,0,0,0.05);
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        justify-content:flex-start;
+
+    }
+
+    .testimonial-icon{
+
+        width:72px;
+
+        height:72px;
+
+        border-radius:50%;
+
+        border:1px solid #f0a46f;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        margin-bottom:18px;
+
+        font-size:32px;
+
+        background:#fff;
+
+    }
+
+    .testimonial-card p{
+
+        font-size:18px;
+
+        line-height:1.3;
+
+        font-weight:600;
+
+    }
+
+    .arrow{
+
+        font-size:52px;
+
+        color:#111;
+
+        line-height:1;
+
+    }
+
+    .direct-visit{
+
+        text-align:center;
+
+        font-size:22px;
+
+        font-weight:800;
+
+        margin-top:24px;
+
+        color:#111;
+
+    }
+
+    .direct-visit span{
+
+        display:inline-block;
+
+        margin-left:10px;
+
+        font-size:30px;
+
+        vertical-align:middle;
+
+    }
+
+    
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="hero-section">
+
+    <div class="hero-wrapper">
+
+        <!-- Hero Image -->
+        <img
+            id="heroImage"
+            src="{% static 'images/b2.jpg' %}"
+            alt="Cherii Bakes">
+
+        <!-- Overlay Content -->
+        <div class="hero-overlay-box">
+
+            <h1 id="heroTitle">
+                Crafting Artisan Bakes Since 2012
+            </h1>
+
+            <p id="heroDescription">
+                Freshly baked breads, cakes, and pastries made daily with the
+                finest ingredients. Experience the rich tradition of baking
+                with every bite.
+            </p>
+
+            <a href="{% url 'products' %}" class="explore-btn">
+                EXPLORE NOW
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+const heroSlides = [
+
+    {
+        image: "{% static 'images/b2.jpg' %}",
+        title: "Crafting Artisan Bakes Since 2012",
+        description: "Freshly baked breads, cakes, and pastries made daily with the finest ingredients. Experience the rich tradition of baking with every bite."
+    },
+
+    {
+        image: "{% static 'images/b3.jpg' %}",
+        title: "Freshly Baked Every Morning",
+        description: "Start your day with warm breads, buttery croissants, delicious pastries, and artisan loaves baked fresh every morning."
+    },
+
+    {
+        image: "{% static 'images/b4.jpg' %}",
+        title: "Cakes for Every Celebration",
+        description: "From birthdays to weddings, our handcrafted cakes are designed to make every celebration unforgettable."
+    },
+
+    {
+        image: "{% static 'images/b8.jpg' %}",
+        title: "Sweet Moments, Freshly Baked",
+        description: "Enjoy our signature cookies, cupcakes, brownies, and desserts made with premium ingredients and lots of love."
+    }
+
+];
+
+let current = 0;
+
+const heroImage = document.getElementById("heroImage");
+const heroTitle = document.getElementById("heroTitle");
+const heroDescription = document.getElementById("heroDescription");
+
+// Change slide every 3 seconds
+setInterval(() => {
+
+    current = (current + 1) % heroSlides.length;
+
+    // Fade Out
+    heroImage.style.opacity = "0";
+    heroTitle.style.opacity = "0";
+    heroDescription.style.opacity = "0";
+
+    setTimeout(() => {
+
+        heroImage.src = heroSlides[current].image;
+        heroTitle.textContent = heroSlides[current].title;
+        heroDescription.textContent = heroSlides[current].description;
+
+        // Fade In
+        heroImage.style.opacity = "1";
+        heroTitle.style.opacity = "1";
+        heroDescription.style.opacity = "1";
+
+    }, 500);
+
+}, 3000);
+
+</script>
+
+<!-- WHY CHOOSE US -->
+
+<section class="why-choose">
+
+    <div class="why-container">
+
+        <h2 class="why-section-title">Why Choose Us</h2>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-bread-slice"></i>
+                </div>
+                <h3>Fresh,<br>Handcrafted Daily</h3>
+                <p>
+                    Every morning, our bakers start early to bring you the freshest breads,
+                    pastries, and cakes—made from scratch using real, wholesome ingredients.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3>Locally Sourced<br>Ingredients</h3>
+                <p>
+                    We partner with local farms and suppliers to ensure the highest quality
+                    and support our community.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <h3>Unique &amp; Custom<br>Creations</h3>
+                <p>
+                    From classic croissants to custom birthday cakes, we bake with creativity
+                    and care—tailored to your tastes and special occasions.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <h3>Warm,<br>Welcoming Atmosphere</h3>
+                <p>
+                    We’re more than just a bakery—we’re your neighborhood spot for sweet treats,
+                    good coffee, and friendly smiles.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h3>Passion for<br>Excellence</h3>
+                <p>
+                    Baking is our passion, and it shows in every detail—from the golden crust to the last crumb.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OFFERS & DEALS -->
+
+<section class="offers">
+
+    <div class="container">
+
+        <h2 class="section-title">Offers & Deals</h2>
+
+    </div>
+
+    <div class="offer-banner">
+
+        <img src="{% static 'images/a10.png' %}" alt="Offers and Deals">
+
+    </div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="faq-section">
+
+    <div class="container">
+        <h2>COMMON QUESTION FOR CUSTOMERS</h2>
+        <div class="faq-wrap">
+
+            <div class="faq-left">
+
+                
+
+                <div class="faq-item">
+
+                    <h3>1. What kind of content do you post on your blog?</h3>
+
+                    <p>
+
+                        We share a variety of content including baking tips, behind-the-scenes stories
+
+                        from our bakery, seasonal updates, recipes, product highlights, and community events.
+
+                    </p>
+
+                </div>
+
+                <div class="faq-item">
+
+                    <h3>2. How often do you update the blog?</h3>
+
+                    <p>
+
+                        We aim to post new content at least once or twice a month. Check back regularly
+
+                        or subscribe to our newsletter for updates!
+
+                    </p>
+
+                </div>
+
+                <div class="faq-item">
+
+                    <h3>3. Can I request a blog topic or recipe?</h3>
+
+                    <p>
+
+                        Absolutely! We love hearing from our readers. If there’s a recipe or topic you’d like
+
+                        us to cover, feel free to contact us or leave a comment on a blog post.
+
+                    </p>
+
+                </div>
+
+                <div class="faq-item">
+
+                    <h3>4. Are the recipes you share easy to follow for beginners?</h3>
+
+                    <p>
+
+                        Yes! We include clear instructions, tips, and sometimes even step-by-step photos
+
+                        to help bakers of all levels enjoy the process.
+
+                    </p>
+
+                </div>
+
+                <div class="faq-item" style="margin-bottom:0;">
+
+                    <h3>5. Do you feature guest posts or collaborations?</h3>
+
+                    <p>
+
+                        We’re open to collaborating with local chefs, food creators, and passionate bakers
+
+                        who share our love for artisan treats.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="faq-right">
+
+                <img src="{% static 'images/a2.png' %}" alt="Macarons">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DIVIDER -->
+<section class="divider-section">
+    <div class="floral-divider"><img src="{% static '/images/a3.png' %}" alt="Macarons"></div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+
+    <div class="container">
+
+        <h2 class="section-title">Our Customers Love</h2>
+
+        <div class="testimonial-wrap">
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-icon">☕</div>
+
+                <p>
+
+                    "A hidden gem with real passion behind every bake."<br>
+
+                    “You can taste the quality in every bite. It’s clear they care deeply about their craft.”<br>
+
+                    — Daniel K., Chef & Culinary Enthusiast
+
+                </p>
+
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-icon">🐈</div>
+
+                <p>
+
+                    "The kids love the cookies—and so do I!"<br>
+
+                    “We stop by after school for their chocolate chip cookies. Soft, gooey, and always fresh.”<br>
+
+                    — Lena W., Mom of Two
+
+                </p>
+
+            </div>
+
+            <div class="arrow">→</div>
+
+        </div>
+
+        <div class="direct-visit">
+
+            Direct visits chat item available <span>→</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

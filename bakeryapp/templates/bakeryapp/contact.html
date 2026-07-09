@@ -1,0 +1,324 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+body{
+background:#fff8ef;
+
+}
+
+.contact-container{
+width:90%;
+margin:auto;
+padding:40px 0;
+}
+
+.heading{
+text-align:center;
+color:#dd7c29;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.sub{
+text-align:center;
+margin-bottom:40px;
+font-size:18px;
+}
+
+.top{
+display:flex;
+gap:60px;
+align-items:flex-start;
+}
+
+.left{
+flex:1;
+}
+
+.right{
+flex:1;
+text-align:center;
+}
+
+.right img{
+width:100%;
+border-radius:18px;
+border:4px solid #efc3a2;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+.form-control{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+.errorlist{
+color:red;
+list-style:none;
+padding:0;
+font-size:14px;
+margin-top:5px;
+}
+
+.btn-send{
+background:#f7c52d;
+border:none;
+padding:12px;
+width:100%;
+border-radius:30px;
+font-weight:bold;
+font-size:18px;
+cursor:pointer;
+}
+
+.btn-send:hover{
+background:#efbb13;
+}
+
+.success{
+background:#d4edda;
+color:#155724;
+padding:12px;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.branch-title{
+text-align:center;
+color:#f0b900;
+margin:60px 0 40px;
+font-weight:bold;
+}
+
+.branch-section{
+display:flex;
+gap:50px;
+}
+
+.branch-images{
+flex:1;
+}
+
+.branch-images img{
+width:90%;
+margin-bottom:30px;
+border-radius:15px;
+}
+
+.branch-list{
+flex:1;
+}
+
+.branch{
+margin-bottom:25px;
+}
+
+.branch h4{
+margin-bottom:5px;
+}
+
+@media(max-width:900px){
+
+.top,
+.branch-section{
+flex-direction:column;
+}
+
+}
+
+</style>
+
+<div class="contact-container">
+
+<h1 class="heading">SEND US A MESSAGE</h1>
+
+<p class="sub">
+You can also use the form below to contact us directly.
+Our team will get back to you within 24 hours.
+</p>
+
+<div class="top">
+
+<div class="left">
+
+{% if success %}
+
+<div class="success">
+Your message has been sent successfully.
+</div>
+
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="form-group">
+<label>Name *</label>
+{{ form.name }}
+{{ form.name.errors }}
+</div>
+
+<div class="form-group">
+<label>Email *</label>
+{{ form.email }}
+{{ form.email.errors }}
+</div>
+
+<div class="form-group">
+<label>Phone Number *</label>
+{{ form.phone }}
+{{ form.phone.errors }}
+</div>
+
+<div class="form-group">
+<label>Subject *</label>
+{{ form.subject }}
+{{ form.subject.errors }}
+</div>
+
+<div class="form-group">
+<label>Message *</label>
+{{ form.message }}
+{{ form.message.errors }}
+</div>
+
+<button class="btn-send">
+SEND MESSAGE
+</button>
+
+</form>
+
+</div>
+
+<div class="right">
+
+<img src="{% static 'images/a5.png' %}" alt="Quote">
+
+</div>
+
+</div>
+
+<h2 class="branch-title">
+OUR BRANCHES ACROSS TAMIL NADU
+</h2>
+
+<div class="branch-section">
+
+<div class="branch-images">
+
+<img src="{% static 'images/a29.png' %}">
+<img src="{% static 'images/a30.png' %}">
+<img src="{% static 'images/a31.png' %}">
+
+</div>
+
+<div class="branch-list">
+
+<div class="branch">
+<h4>Chennai</h4>
+<p>No.45 Anna Salai, T Nagar, Chennai - 600017</p>
+</div>
+
+<div class="branch">
+<h4>Coimbatore</h4>
+<p>12 DB Road, RS Puram - 641002</p>
+</div>
+
+<div class="branch">
+<h4>Madurai</h4>
+<p>28 KK Nagar Main Road - 625020</p>
+</div>
+
+<div class="branch">
+<h4>Trichy</h4>
+<p>7 Salai Road, Thillai Nagar - 620018</p>
+</div>
+
+<div class="branch">
+<h4>Salem</h4>
+<p>15 Five Roads, Fairlands - 636016</p>
+</div>
+
+<div class="branch">
+<h4>Tirunelveli</h4>
+<p>11 South Bypass Road, Palayamkottai - 627002</p>
+</div>
+
+<div class="branch">
+<h4>Erode</h4>
+<p>9 Brough Road - 638001</p>
+</div>
+
+<div class="branch">
+<h4>Vellore</h4>
+<p>14 Katpadi Road, Gandhi Nagar - 632006</p>
+</div>
+
+<div class="branch">
+<h4>Thoothukudi</h4>
+<p>6 Beach Road, Tuticorin - 628001</p>
+</div>
+
+<div class="branch">
+<h4>Thanjavur</h4>
+<p>10 Medical College Road - 613004</p>
+</div>
+
+<div class="branch">
+<h4>Dindigul</h4>
+<p>4 GTN Road - 624005</p>
+</div>
+
+<div class="branch">
+<h4>Kanchipuram</h4>
+<p>3 Ekambaranathar Sannathi Street - 631502</p>
+</div>
+
+<div class="branch">
+<h4>Karur</h4>
+<p>22 Kovai Road - 639002</p>
+</div>
+
+<div class="branch">
+<h4>Nagercoil</h4>
+<p>16 Cape Road, Vadassery - 629001</p>
+</div>
+
+<div class="branch">
+<h4>Cuddalore</h4>
+<p>8 Beach Road - 607001</p>
+</div>
+
+<div class="branch">
+<h4>Villupuram</h4>
+<p>19 Tindivanam Road - 605602</p>
+</div>
+
+<div class="branch">
+<h4>Namakkal</h4>
+<p>5 Salem Road - 637001</p>
+</div>
+
+<div class="branch">
+<h4>Tiruppur</h4>
+<p>20 Avinashi Road - 641603</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

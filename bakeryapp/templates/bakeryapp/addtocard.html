@@ -1,0 +1,189 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#faf4ec;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:1200px;
+    width:90%;
+    margin:50px auto;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    justify-content:center;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 12px rgba(0,0,0,.15);
+    text-align:center;
+    transition:.3s;
+    padding-bottom:20px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3{
+    margin:15px 0 5px;
+    color:#444;
+}
+
+.card p{
+    color:#d97c30;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.cart-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#d97c30;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    margin:10px auto 0;
+    display:block;
+}
+
+.cart-btn:hover{
+    background:#b86a23;
+}
+
+</style>
+
+<div class="container">
+
+    <h1>Add to Cart</h1>
+
+    <div class="product-grid">
+
+        <!-- Product 1 -->
+        <div class="card">
+            <img src="{% static 'images/c1.jpg' %}" alt="">
+            <h3>Chocolate Cake</h3>
+            <p>₹400</p>
+
+            <button
+                class="cart-btn"
+                data-name="Chocolate Cake"
+                data-price="400"
+                data-image="{% static 'images/c1.jpg' %}"
+                onclick="addToCart(this)">
+                🛒
+            </button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="card">
+            <img src="{% static 'images/c2.jpg' %}" alt="">
+            <h3>Strawberry Cake</h3>
+            <p>₹500</p>
+
+            <button
+                class="cart-btn"
+                data-name="Strawberry Cake"
+                data-price="500"
+                data-image="{% static 'images/c2.jpg' %}"
+                onclick="addToCart(this)">
+                🛒
+            </button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="card">
+            <img src="{% static 'images/c3.png' %}" alt="">
+            <h3>Black Forest Cake</h3>
+            <p>₹450</p>
+
+            <button
+                class="cart-btn"
+                data-name="Black Forest Cake"
+                data-price="450"
+                data-image="{% static 'images/c3.jpg' %}"
+                onclick="addToCart(this)">
+                🛒
+            </button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="card">
+            <img src="{% static 'images/a2.png' %}" alt="">
+            <h3>Red Velvet Cake</h3>
+            <p>₹600</p>
+
+            <button
+                class="cart-btn"
+                data-name="Red Velvet Cake"
+                data-price="600"
+                data-image="{% static 'images/c4.jpg' %}"
+                onclick="addToCart(this)">
+                🛒
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function addToCart(button){
+
+    let name = button.dataset.name;
+    let price = Number(button.dataset.price);
+    let image = button.dataset.image;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let item = cart.find(product => product.name === name);
+
+    if(item){
+        item.quantity += 1;
+    }
+    else{
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // alert(name + " added to cart!");
+
+    // console.log(cart);
+
+    // localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+}
+
+</script>
+
+{% endblock %}

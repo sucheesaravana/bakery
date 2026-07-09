@@ -1,0 +1,286 @@
+{% extends 'bakeryapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+body{
+background:#fafafa;
+font-family:Poppins,sans-serif;
+}
+
+.login-page{
+width:90%;
+margin:60px auto;
+}
+
+/* Tabs */
+
+.tabs{
+
+display:flex;
+margin-bottom:60px;
+}
+
+.tab{
+
+flex:1;
+padding:22px;
+text-align:center;
+font-size:38px;
+font-weight:bold;
+text-decoration:none;
+border:2px solid #eb7e2d;
+color:#eb7e2d;
+transition:.3s;
+
+}
+
+.active{
+
+background:#eb7e2d;
+color:white;
+
+}
+
+.tab:hover{
+
+background:#eb7e2d;
+color:white;
+
+}
+
+/* Content */
+
+.login-content{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+
+}
+
+.form-box{
+
+width:45%;
+
+}
+
+.image-box{
+
+width:45%;
+text-align:center;
+
+}
+
+.image-frame{
+
+background:#eb7e2d;
+padding:40px;
+display:inline-block;
+border-radius:18px;
+transform:rotate(-10deg);
+
+}
+
+.image-frame img{
+
+width:350px;
+border-radius:15px;
+transform:rotate(10deg);
+
+}
+
+label{
+
+font-size:28px;
+font-weight:600;
+display:block;
+margin-bottom:10px;
+margin-top:20px;
+
+}
+
+.form-control{
+
+width:100%;
+padding:18px;
+font-size:22px;
+border:1px solid #d89b9b;
+border-radius:10px;
+outline:none;
+
+}
+
+.btn-login{
+
+width:100%;
+margin-top:35px;
+background:#ffd43b;
+padding:18px;
+border:none;
+border-radius:40px;
+font-size:40px;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+.btn-login:hover{
+
+background:#f7c81d;
+
+}
+
+.links{
+
+margin-top:20px;
+font-size:20px;
+
+}
+
+.links a{
+
+text-decoration:none;
+color:#eb7e2d;
+font-weight:bold;
+
+}
+
+.error{
+
+background:#ffdede;
+color:red;
+padding:15px;
+margin-bottom:20px;
+border-radius:8px;
+
+}
+
+@media(max-width:900px){
+
+.login-content{
+
+flex-direction:column;
+
+}
+
+.form-box,
+.image-box{
+
+width:100%;
+
+}
+
+.tab{
+
+font-size:24px;
+
+}
+
+.image-frame img{
+
+width:250px;
+
+}
+
+}
+
+</style>
+
+<div class="login-page">
+
+<div class="tabs">
+
+<a href="{% url 'login' %}" class="tab active">
+Login
+</a>
+
+<a href="{% url 'register' %}" class="tab">
+Register
+</a>
+
+</div>
+
+<div class="login-content">
+
+<div class="form-box">
+
+{% for message in messages %}
+
+<div class="error">
+{{ message }}
+</div>
+
+{% endfor %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>E-Mail</label>
+
+<input
+type="email"
+name="email"
+class="form-control"
+placeholder="Enter Your E-Mail"
+required>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+class="form-control"
+placeholder="Enter Your Password"
+required>
+
+<button class="btn-login">
+
+Login
+
+</button>
+
+</form>
+
+<div class="links">
+
+<p>
+
+<a href="#">
+Forgot Password?</a>
+
+</p>
+
+<p>
+
+Don't Have An Account?
+
+<a href="{% url 'register' %}">
+Register
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+<div class="image-box">
+
+<div class="image-frame">
+
+<img src="{% static 'images/p1.webp' %}" alt="Cake">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
