@@ -382,11 +382,16 @@ body{
             <h3>Select Weight</h3>
 
             <button class="weight-btn active" onclick="changePrice(this,500,400)">500 G</button>
+
             <button class="weight-btn" onclick="changePrice(this,1000,800)">1 KG</button>
-            <button class="weight-btn" onclick="changePrice(this,2000,1600)">2 KG</button>
-            <button class="weight-btn" onclick="changePrice(this,3000,2400)">3 KG</button>
-            <button class="weight-btn" onclick="changePrice(this,4000,3200)">4 KG</button>
-            <button class="weight-btn" onclick="changePrice(this,5000,4000)">5 KG</button>
+
+            <button class="weight-btn" onclick="changePrice(this,2000,1500)">2 KG</button>
+
+            <button class="weight-btn" onclick="changePrice(this,3000,2000)">3 KG</button>
+
+            <button class="weight-btn" onclick="changePrice(this,4000,2500)">4 KG</button>
+
+            <button class="weight-btn" onclick="changePrice(this,5000,3000)">5 KG</button>
 
             <div class="summary">
 
@@ -489,25 +494,30 @@ body{
 
 function changePrice(button, weight, price){
 
+    // Remove active class from all buttons
     document.querySelectorAll(".weight-btn").forEach(btn=>{
         btn.classList.remove("active");
     });
 
+    // Highlight selected button
     button.classList.add("active");
 
+    // Update displayed price
     document.getElementById("price").innerHTML = price;
+    document.getElementById("pricePerCake").innerHTML = price;
 
-    document.getElementById("pricePerCake").value = price;
+    // Update hidden values
+    document.getElementById("unitPrice").value = price;
 
-    if(weight==500){
-        document.getElementById("weightText").innerHTML="500 G Cake";
-        document.getElementById("weight").value="500 G";
+    if(weight == 500){
+        document.getElementById("weightText").innerHTML = "500 G Cake";
+        document.getElementById("weight").value = "500 G";
+    }else{
+        document.getElementById("weightText").innerHTML = (weight/1000) + " KG Cake";
+        document.getElementById("weight").value = (weight/1000) + " KG";
     }
-    else{
-        document.getElementById("weightText").innerHTML=(weight/1000)+" KG Cake";
-        document.getElementById("weight").value=(weight/1000)+" KG";
-    }
 
+    // Recalculate total
     updateTotal();
 }
 
@@ -523,7 +533,6 @@ function updateTotal(){
 
     document.getElementById("amount").value = total;
 }
-
 
 function addToCart(){
 
@@ -585,15 +594,20 @@ function goToPayment(){
         return;
     }
 
-    // Save address if needed
+    // Save customer details
     localStorage.setItem("customerName", name);
     localStorage.setItem("deliveryLocation", location);
     localStorage.setItem("mobile", mobile);
     localStorage.setItem("address", address);
 
-    // Go to payment page
-    window.location.href = "/payment/";
+    // Selected values
+    let amount = document.getElementById("amount").value;
+    let weight = document.getElementById("weight").value;
 
+    // Redirect with selected values
+    window.location.href =
+        "{% url 'payment' %}?amount=" + amount +
+        "&weight=" + encodeURIComponent(weight);
 }
 
 

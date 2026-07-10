@@ -131,9 +131,9 @@ def payment(request):
     )
 
     order = client.order.create({
-        "amount": amount * 100,
+        "amount": amount * 100,   # Razorpay expects paise
         "currency": "INR",
-        "payment_capture": 1
+        "payment_capture": "1"
     })
 
     context = {
